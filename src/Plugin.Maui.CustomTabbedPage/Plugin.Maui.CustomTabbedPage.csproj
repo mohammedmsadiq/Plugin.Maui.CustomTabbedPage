@@ -37,9 +37,11 @@
     <MinClientVersion>5.0</MinClientVersion>
   </PropertyGroup>
 
-  <!-- Required in .NET 8: UseMaui=true no longer adds implicit package references -->
+  <!-- Pin to the workload-installed version so NU1604 (missing lower bound) is not raised.
+       $(MauiVersion) is defined by the Microsoft.Maui.Sdk and resolves to the version that
+       matches the installed workload — the same pattern used by the Community Toolkit. -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
   </ItemGroup>
 
   <!-- Include the README and icon in the NuGet package -->
