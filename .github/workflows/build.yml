@@ -24,7 +24,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        # Use the latest setup-dotnet major version. v4 brings performance and caching improvements.
+        uses: actions/setup-dotnet@v4
         with:
           # Use the latest available .NET SDK 8.x to build the library
           dotnet-version: '8.0.x'
@@ -43,7 +44,8 @@ jobs:
         working-directory: src/Plugin.Maui.CustomTabbedPage
 
       - name: Upload package
-        uses: actions/upload-artifact@v3
+        # Use the latest artifact upload action. v4 is required because v3 was deprecated.
+        uses: actions/upload-artifact@v4
         with:
           name: plugin-package
           path: src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg
