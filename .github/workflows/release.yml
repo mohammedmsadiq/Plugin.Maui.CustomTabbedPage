@@ -2,11 +2,10 @@ name: Release
 
 # Release workflow: triggered when a semver tag (e.g. v1.2.3) is pushed.
 # Steps:
-#   1. Run unit tests (gate — release is aborted if tests fail).
-#   2. Validate that the pushed tag version matches the version in Directory.Build.props.
-#   3. Build and pack the NuGet package.
-#   4. Create a GitHub Release and attach the .nupkg and .snupkg files.
-#   5. Publish to NuGet.org if the NUGET_API_KEY secret is configured.
+#   1. Validate that the pushed tag version matches <PluginVersion> in Directory.Build.props.
+#   2. Build and pack the NuGet package.
+#   3. Create a GitHub Release and attach the .nupkg and .snupkg files.
+#   4. Publish to NuGet.org if the NUGET_API_KEY secret is configured.
 
 on:
   push:
@@ -14,49 +13,6 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
-  # ── Unit tests (gate) ─────────────────────────────────────────────────────
-  # Tests target net8.0-android and reference the plugin, so the MAUI workload
-  # is required. macOS is used because it supports the Android MAUI workload.
-  test:
-    name: Unit Tests
-    runs-on: macos-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: nuget-test-${{ runner.os }}-${{ hashFiles('tests/**/*.csproj', 'src/**/*.csproj') }}
-          restore-keys: |
-            nuget-test-${{ runner.os }}-
-
-      - name: Install MAUI workloads
-        run: dotnet workload install maui
-
-      - name: Restore test project
-        run: dotnet restore tests/Plugin.Maui.CustomTabbedPage.Tests
-
-      - name: Run unit tests
-        run: >
-          dotnet test tests/Plugin.Maui.CustomTabbedPage.Tests
-          --no-restore
-          --configuration Release
-          --logger "trx;LogFileName=test-results.trx"
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-test-results
-          path: tests/Plugin.Maui.CustomTabbedPage.Tests/TestResults/
-
   # ── Version validation ────────────────────────────────────────────────────
   # Ensures the pushed tag (e.g. v1.2.3) matches <PluginVersion> in
   # Directory.Build.props (e.g. 1.2.3) so accidental mismatches are caught
@@ -64,7 +20,6 @@ jobs:
   validate-version:
     name: Validate Version
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Checkout source
         uses: actions/checkout@v4

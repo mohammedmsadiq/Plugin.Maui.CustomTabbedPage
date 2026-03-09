@@ -1,5 +1,7 @@
+#if ANDROID
 using Microsoft.Maui.Controls.Handlers;
 using Android.Views;
+#endif
 
 namespace Plugin.Maui.CustomTabbedPage.Controls;
 

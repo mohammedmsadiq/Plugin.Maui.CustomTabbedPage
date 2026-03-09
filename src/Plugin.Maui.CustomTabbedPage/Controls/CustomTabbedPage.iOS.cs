@@ -1,5 +1,7 @@
+#if IOS
 using Microsoft.Maui.Controls.Handlers;
 using UIKit;
+#endif
 
 namespace Plugin.Maui.CustomTabbedPage.Controls;
 

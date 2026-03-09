@@ -37,6 +37,11 @@
     <MinClientVersion>5.0</MinClientVersion>
   </PropertyGroup>
 
+  <!-- Required in .NET 8: UseMaui=true no longer adds implicit package references -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Controls" />
+  </ItemGroup>
+
   <!-- Include the README and icon in the NuGet package -->
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />

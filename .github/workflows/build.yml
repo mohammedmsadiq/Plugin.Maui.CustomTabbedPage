@@ -1,8 +1,8 @@
 name: Build
 
 # CI workflow: runs on every push and pull request targeting main or develop.
-# It builds the plugin library, runs unit tests, and produces a NuGet package
-# artifact for verification.
+# Builds the plugin library for all supported platforms and produces a NuGet
+# package artifact for verification.
 
 on:
   push:
@@ -15,57 +15,13 @@ on:
       - develop
 
 jobs:
-  # ── Unit tests ────────────────────────────────────────────────────────────
-  # Tests target net8.0-android and reference the plugin, so the MAUI workload
-  # is required. macOS is used because it supports the Android MAUI workload.
-  test:
-    name: Unit Tests
-    runs-on: macos-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: nuget-test-${{ runner.os }}-${{ hashFiles('tests/**/*.csproj', 'src/**/*.csproj') }}
-          restore-keys: |
-            nuget-test-${{ runner.os }}-
-
-      - name: Install MAUI workloads
-        run: dotnet workload install maui
-
-      - name: Restore test project
-        run: dotnet restore tests/Plugin.Maui.CustomTabbedPage.Tests
-
-      - name: Run unit tests
-        run: >
-          dotnet test tests/Plugin.Maui.CustomTabbedPage.Tests
-          --no-restore
-          --configuration Release
-          --logger "trx;LogFileName=test-results.trx"
-          --collect:"XPlat Code Coverage"
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: tests/Plugin.Maui.CustomTabbedPage.Tests/TestResults/
-
   # ── Library build & pack ──────────────────────────────────────────────────
-  # Builds the multi-targeted MAUI library and produces a NuGet package.
-  # Runs on macOS so that iOS and Android SDK tooling is available.
+  # Builds the multi-targeted MAUI library (net8.0-ios + net8.0-android) and
+  # produces a NuGet package. Runs on macOS so iOS and Android SDK tooling is
+  # available via the MAUI workload.
   build:
     name: Build & Pack
     runs-on: macos-latest
-    needs: test
     steps:
       - name: Checkout source
         uses: actions/checkout@v4

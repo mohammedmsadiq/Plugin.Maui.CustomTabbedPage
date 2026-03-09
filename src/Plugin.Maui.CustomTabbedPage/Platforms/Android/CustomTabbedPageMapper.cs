@@ -75,7 +75,7 @@ public static class CustomTabbedPageMapper
         }
     }
 
-    private static BottomNavigationView? FindBottomNavigationView(View view)
+    private static BottomNavigationView? FindBottomNavigationView(global::Android.Views.View view)
     {
         if (view is BottomNavigationView bottomNavigationView)
             return bottomNavigationView;
@@ -91,7 +91,11 @@ public static class CustomTabbedPageMapper
         return null;
     }
 
-    private static Android.Content.Res.ColorStateList CreateColorStateList(Color selectedColor, Color unselectedColor)
+    // Parameters are Android.Graphics.Color (returned by ToPlatform()) — use global:: to
+    // avoid ambiguity with Microsoft.Maui.Graphics.Color which is also in scope.
+    private static Android.Content.Res.ColorStateList CreateColorStateList(
+        global::Android.Graphics.Color selectedColor,
+        global::Android.Graphics.Color unselectedColor)
     {
         int[][] states = new int[][]
         {
