@@ -1,0 +1,49 @@
+name: Build
+
+# CI workflow for building the Plugin.Maui.CustomTabbedPage library.  This
+# workflow runs on pushes and pull requests targeting the `main` and
+# `develop` branches. It restores NuGet packages and compiles the
+# multi‑targeted .NET MAUI library on macOS so that iOS and Android
+# targets are supported.
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          # Use the latest available .NET SDK 8.x to build the library
+          dotnet-version: '8.0.x'
+
+      - name: Restore packages
+        run: dotnet restore
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      # Generate a NuGet package as a build artifact for verification.
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build -o ./artifacts
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      - name: Upload package
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugin-package
+          path: src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg

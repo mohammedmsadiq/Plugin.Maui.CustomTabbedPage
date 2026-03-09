@@ -1,0 +1,54 @@
+name: Release
+
+# Release workflow for publishing the Plugin.Maui.CustomTabbedPage NuGet
+# package and creating a GitHub release. This workflow runs when a tag
+# following the semantic versioning pattern `v*` is pushed to the
+# repository. It builds the package, attaches it to a new GitHub
+# release and optionally pushes it to NuGet if the `NUGET_API_KEY`
+# secret is configured.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore packages
+        run: dotnet restore
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      - name: Pack
+        run: dotnet pack --configuration Release --no-build -o ./artifacts
+        working-directory: src/Plugin.Maui.CustomTabbedPage
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg'
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Automated release of Plugin.Maui.CustomTabbedPage version ${{ github.ref_name }}.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Optional step to publish the package to NuGet. To enable this,
+      # add the `NUGET_API_KEY` secret to your repository's settings.
+      - name: Publish to NuGet
+        if: secrets.NUGET_API_KEY != ''
+        run: dotnet nuget push 'src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg' --source 'https://api.nuget.org/v3/index.json' --api-key ${{ secrets.NUGET_API_KEY }}
+        working-directory: .
