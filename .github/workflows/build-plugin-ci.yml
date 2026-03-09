@@ -1,0 +1,23 @@
+name: Build for CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-plugin-ci:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Install MAUI Android workload
+        run: dotnet workload install maui-android
+      - name: Build
+        run: dotnet build src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj -c Release -f net8.0-android -p:TargetFramework=net8.0-android -p:TargetFrameworks=net8.0-android

@@ -1,0 +1,46 @@
+name: Create a (Pre)release on NuGet
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-preview[0-9]+"
+
+jobs:
+  release-nuget:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Install MAUI workload
+        run: dotnet workload install maui
+      - name: Verify commit exists in origin/main
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git branch --remote --contains | grep origin/main
+      - name: Get version information from tag
+        id: get_version
+        shell: pwsh
+        run: |
+          $version="${{github.ref_name}}".TrimStart("v")
+          "version-without-v=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+      - name: Build
+        run: dotnet build src/Plugin.Maui.CustomTabbedPage/Plugin.Maui.CustomTabbedPage.csproj -c Release
+      - name: Pack
+        run: dotnet pack src/Plugin.Maui.CustomTabbedPage/Plugin.Maui.CustomTabbedPage.csproj -c Release -p:PackageVersion=${{ steps.get_version.outputs.version-without-v }} -p:NoBuild=true
+      - name: Upload package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Plugin.Maui.CustomTabbedPage
+          path: |
+            src/Plugin.Maui.CustomTabbedPage/bin/Release/*.nupkg
+            src/Plugin.Maui.CustomTabbedPage/bin/Release/*.snupkg
+      - name: Push
+        run: |
+          dotnet nuget push src/Plugin.Maui.CustomTabbedPage/bin/Release/Plugin.Maui.CustomTabbedPage.${{ steps.get_version.outputs.version-without-v }}.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+          dotnet nuget push src/Plugin.Maui.CustomTabbedPage/bin/Release/Plugin.Maui.CustomTabbedPage.${{ steps.get_version.outputs.version-without-v }}.snupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+        env:
+          GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}

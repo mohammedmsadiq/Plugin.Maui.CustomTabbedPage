@@ -1,29 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!--
-      Target net8.0-android so this project shares a compatible TFM with the plugin
-      (net8.0-ios;net8.0-android). Android is chosen because macOS CI agents support
-      it without additional provisioning beyond the MAUI workload.
+      Plain net8.0 target — no MAUI workload needed.
+      The enum source file is linked directly below so we can test pure C#
+      without pulling in any platform-specific MAUI dependencies.
     -->
-    <TargetFramework>net8.0-android</TargetFramework>
-    <UseMaui>true</UseMaui>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <!-- Suppress AOT/linker warnings that are expected in test projects -->
-    <NoWarn>$(NoWarn);IL2026;IL2072;IL2091</NoWarn>
-    <!--
-      MAUI types are resolved transitively via the ProjectReference to the plugin.
-      This suppresses the "add Microsoft.Maui.Controls PackageReference" warning
-      that fires when UseMaui=true without an explicit package reference.
-    -->
-    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
   </PropertyGroup>
 
+  <!-- Link the enum source directly — avoids a MAUI ProjectReference -->
   <ItemGroup>
-    <!-- Reference the plugin under test -->
-    <ProjectReference Include="..\..\src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj" />
+    <Compile Include="..\..\src\Plugin.Maui.CustomTabbedPage\Enums\iOSTabBarMode.cs" LinkBase="Shared\" />
   </ItemGroup>
 
   <ItemGroup>

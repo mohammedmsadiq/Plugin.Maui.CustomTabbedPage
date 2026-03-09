@@ -1,0 +1,21 @@
+name: Run Tests for CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  tests-ci:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Test
+        run: dotnet test tests\Plugin.Maui.CustomTabbedPage.Tests\Plugin.Maui.CustomTabbedPage.Tests.csproj -c Release
