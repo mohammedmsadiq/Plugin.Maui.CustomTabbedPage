@@ -1,10 +1,8 @@
 name: Build
 
-# CI workflow for building the Plugin.Maui.CustomTabbedPage library.  This
-# workflow runs on pushes and pull requests targeting the `main` and
-# `develop` branches. It restores NuGet packages and compiles the
-# multi‑targeted .NET MAUI library on macOS so that iOS and Android
-# targets are supported.
+# CI workflow: runs on every push and pull request targeting main or develop.
+# It builds the plugin library, runs unit tests, and produces a NuGet package
+# artifact for verification.
 
 on:
   push:
@@ -17,38 +15,94 @@ on:
       - develop
 
 jobs:
-  build:
-    runs-on: macos-latest
+  # ── Unit tests ────────────────────────────────────────────────────────────
+  # Tests target plain net8.0 so they run on ubuntu without MAUI workloads.
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        # Use the latest setup-dotnet major version. v4 brings performance and caching improvements.
         uses: actions/setup-dotnet@v4
         with:
-          # Use the latest available .NET SDK 8.x to build the library
           dotnet-version: '8.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-test-${{ runner.os }}-${{ hashFiles('tests/**/*.csproj') }}
+          restore-keys: |
+            nuget-test-${{ runner.os }}-
+
+      - name: Restore test project
+        run: dotnet restore tests/Plugin.Maui.CustomTabbedPage.Tests
+
+      - name: Run unit tests
+        run: >
+          dotnet test tests/Plugin.Maui.CustomTabbedPage.Tests
+          --no-restore
+          --configuration Release
+          --logger "trx;LogFileName=test-results.trx"
+          --collect:"XPlat Code Coverage"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: tests/Plugin.Maui.CustomTabbedPage.Tests/TestResults/
+
+  # ── Library build & pack ──────────────────────────────────────────────────
+  # Builds the multi-targeted MAUI library and produces a NuGet package.
+  # Runs on macOS so that iOS and Android SDK tooling is available.
+  build:
+    name: Build & Pack
+    runs-on: macos-latest
+    needs: test
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-build-${{ runner.os }}-${{ hashFiles('src/**/*.csproj') }}
+          restore-keys: |
+            nuget-build-${{ runner.os }}-
 
       - name: Install MAUI workloads
         run: dotnet workload install maui
 
       - name: Restore packages
-        run: dotnet restore
-        working-directory: src/Plugin.Maui.CustomTabbedPage
+        run: dotnet restore src/Plugin.Maui.CustomTabbedPage
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
-        working-directory: src/Plugin.Maui.CustomTabbedPage
+        run: dotnet build src/Plugin.Maui.CustomTabbedPage --configuration Release --no-restore
 
-      # Generate a NuGet package as a build artifact for verification.
       - name: Pack
-        run: dotnet pack --configuration Release --no-build -o ./artifacts
-        working-directory: src/Plugin.Maui.CustomTabbedPage
+        run: >
+          dotnet pack src/Plugin.Maui.CustomTabbedPage
+          --configuration Release
+          --no-build
+          --output ./artifacts
 
-      - name: Upload package
-        # Use the latest artifact upload action. v4 is required because v3 was deprecated.
+      - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
         with:
           name: plugin-package
-          path: src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg
+          path: artifacts/*.nupkg
+
+      - name: Upload symbols artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-symbols
+          path: artifacts/*.snupkg

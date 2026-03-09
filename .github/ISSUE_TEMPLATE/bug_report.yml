@@ -1,0 +1,96 @@
+name: Bug Report
+description: Report a bug or unexpected behaviour in Plugin.Maui.CustomTabbedPage
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug. Please fill in as much detail as possible so we can reproduce and fix it quickly.
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: Which version of Plugin.Maui.CustomTabbedPage are you using?
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform(s) does the bug occur on?
+      multiple: true
+      options:
+        - iOS
+        - Android
+    validations:
+      required: true
+
+  - type: input
+    id: os-version
+    attributes:
+      label: OS version
+      description: What OS version are you running on the device/simulator?
+      placeholder: "e.g. iOS 17.2, Android 14"
+    validations:
+      required: true
+
+  - type: input
+    id: dotnet-version
+    attributes:
+      label: .NET / MAUI version
+      description: Output of `dotnet --version` and your MAUI workload version.
+      placeholder: "e.g. .NET 8.0.200, MAUI 8.0.20"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behaviour.
+      placeholder: |
+        1. Set up CustomTabbedPage with ...
+        2. Navigate to ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What actually happened? Include any error messages or stack traces.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: A link to a minimal GitHub repo or a code snippet that reproduces the issue.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, logs, or anything else that might help.

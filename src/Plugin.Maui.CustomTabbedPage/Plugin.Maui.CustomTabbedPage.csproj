@@ -7,5 +7,39 @@
     <Nullable>enable</Nullable>
     <!-- Publish as a library -->
     <OutputType>Library</OutputType>
+
+    <!-- NuGet package metadata -->
+    <PackageId>Plugin.Maui.CustomTabbedPage</PackageId>
+    <Authors>Plugin.Maui.CustomTabbedPage Contributors</Authors>
+    <Company>Plugin.Maui.CustomTabbedPage</Company>
+    <Product>Plugin.Maui.CustomTabbedPage</Product>
+    <Description>A lightweight yet flexible tab control for .NET MAUI that allows you to host real ContentPage children while customising the native tab bar on iOS and Android. Supports per-tab icons, badges, text visibility, and global bar appearance settings.</Description>
+    <PackageTags>maui;dotnet-maui;tabbed;tabbedpage;navigation;tab;controls;ios;android;plugin;community</PackageTags>
+    <PackageProjectUrl>https://github.com/YOUR_ORG/Plugin.Maui.CustomTabbedPage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/YOUR_ORG/Plugin.Maui.CustomTabbedPage</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <Copyright>Copyright © 2024 Plugin.Maui.CustomTabbedPage Contributors</Copyright>
+
+    <!-- Source Link / debugging support -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- XML docs -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+
+    <!-- Minimum NuGet client version -->
+    <MinClientVersion>5.0</MinClientVersion>
   </PropertyGroup>
+
+  <!-- Include the README and icon in the NuGet package -->
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" Condition="Exists('..\..\icon.png')" />
+  </ItemGroup>
 </Project>

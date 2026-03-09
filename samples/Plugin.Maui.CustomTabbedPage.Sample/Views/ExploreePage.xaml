@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.ExploreePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    Title="Explore">
+    <VerticalStackLayout
+        Padding="24"
+        Spacing="16"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="28"
+            HorizontalOptions="Center"
+            Text="Explore" />
+        <Label
+            FontSize="16"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Text="This tab has a badge with custom colours set via TabBadgeColor and TabBadgeTextColor." />
+        <Button
+            Clicked="OnClearBadgeClicked"
+            HorizontalOptions="Center"
+            Text="Clear Badge" />
+    </VerticalStackLayout>
+</controls:CustomTabPage>

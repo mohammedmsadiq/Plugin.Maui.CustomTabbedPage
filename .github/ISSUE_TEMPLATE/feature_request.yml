@@ -1,0 +1,48 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Plugin.Maui.CustomTabbedPage
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement! Please describe the problem you are trying to solve so we can understand the use case.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem does this feature solve? What are you trying to achieve that is currently not possible?
+      placeholder: "I'm trying to do X but the plugin currently doesn't support..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature or change you would like to see.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Affected platform(s)
+      multiple: true
+      options:
+        - iOS
+        - Android
+        - All platforms
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative approaches or workarounds?
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, mockups, links to similar implementations, or anything else relevant.

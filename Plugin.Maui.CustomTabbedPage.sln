@@ -1,7 +1,27 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# This solution contains a single MAUI plugin project and a sample app can be added separately.
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.CustomTabbedPage", "src/Plugin.Maui.CustomTabbedPage/Plugin.Maui.CustomTabbedPage.csproj", "{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+
+# -----------------------------------------------------------------------
+# Solution folders
+# -----------------------------------------------------------------------
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B2C3D4E5-F6A7-8901-BCDE-F12345678901}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C3D4E5F6-A7B8-9012-CDEF-012345678902}"
+EndProject
+
+# -----------------------------------------------------------------------
+# Projects
+# -----------------------------------------------------------------------
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.CustomTabbedPage", "src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj", "{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.CustomTabbedPage.Sample", "samples\Plugin.Maui.CustomTabbedPage.Sample\Plugin.Maui.CustomTabbedPage.Sample.csproj", "{D4E5F6A7-B8C9-0123-DEF0-123456789003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.CustomTabbedPage.Tests", "tests\Plugin.Maui.CustomTabbedPage.Tests\Plugin.Maui.CustomTabbedPage.Tests.csproj", "{E5F6A7B8-C9D0-1234-EF01-234567890004}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +32,18 @@ Global
 		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-123456789003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-123456789003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-123456789003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E5F6A7-B8C9-0123-DEF0-123456789003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5F6A7B8-C9D0-1234-EF01-234567890004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5F6A7B8-C9D0-1234-EF01-234567890004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5F6A7B8-C9D0-1234-EF01-234567890004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5F6A7B8-C9D0-1234-EF01-234567890004}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
+		{D4E5F6A7-B8C9-0123-DEF0-123456789003} = {B2C3D4E5-F6A7-8901-BCDE-F12345678901}
+		{E5F6A7B8-C9D0-1234-EF01-234567890004} = {C3D4E5F6-A7B8-9012-CDEF-012345678902}
 	EndGlobalSection
 EndGlobal

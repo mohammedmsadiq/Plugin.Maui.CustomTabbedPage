@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <!-- Shared version across all projects in the repository -->
+    <PluginVersion>1.0.0</PluginVersion>
+    <Version>$(PluginVersion)</Version>
+    <AssemblyVersion>$(PluginVersion)</AssemblyVersion>
+    <FileVersion>$(PluginVersion)</FileVersion>
+
+    <!-- Treat warnings as errors in CI -->
+    <TreatWarningsAsErrors Condition="'$(CI)' == 'true'">true</TreatWarningsAsErrors>
+
+    <!-- Enforce nullable reference types project-wide -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Minimum target framework baseline -->
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+</Project>

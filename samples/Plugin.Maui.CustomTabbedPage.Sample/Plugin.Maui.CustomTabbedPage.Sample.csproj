@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <UseMaui>true</UseMaui>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Plugin.Maui.CustomTabbedPage.Sample</RootNamespace>
+    <ApplicationId>com.pluginmaui.customtabbedpage.sample</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AndroidManifest>Platforms\Android\AndroidManifest.xml</AndroidManifest>
+
+    <!-- Do not publish this project as a NuGet package -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj" />
+  </ItemGroup>
+
+  <!-- App icon and splash screen resources -->
+  <ItemGroup>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+  </ItemGroup>
+</Project>

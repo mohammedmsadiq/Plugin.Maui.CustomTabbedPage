@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabbedPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.MainTabbedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    xmlns:views="clr-namespace:Plugin.Maui.CustomTabbedPage.Sample.Views"
+    TabBarBackgroundColor="#FFFFFF"
+    TabBarSelectedColor="#512BD4"
+    TabBarUnselectedColor="#9E9E9E"
+    TabBarBackgroundOpacity="1.0"
+    RemoveTopShadowLine="True"
+    iOSMode="Branded">
+
+    <!--
+        Each child must derive from CustomTabPage. Use SelectedIcon / UnselectedIcon
+        to supply distinct images for selected and unselected states. Use BadgeText
+        and BadgeIsVisible to control notification badges.
+    -->
+    <views:HomePage
+        Title="Home"
+        ShowText="True"
+        BadgeIsVisible="False" />
+
+    <views:ExploreePage
+        Title="Explore"
+        ShowText="True"
+        BadgeIsVisible="True"
+        BadgeText="5"
+        TabBadgeColor="#512BD4"
+        TabBadgeTextColor="White" />
+
+    <views:ProfilePage
+        Title="Profile"
+        ShowText="True"
+        BadgeIsVisible="False" />
+
+</controls:CustomTabbedPage>
