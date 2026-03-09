@@ -15,9 +15,11 @@ on:
 
 jobs:
   # ── Unit tests (gate) ─────────────────────────────────────────────────────
+  # Tests target net8.0-android and reference the plugin, so the MAUI workload
+  # is required. macOS is used because it supports the Android MAUI workload.
   test:
     name: Unit Tests
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
@@ -31,9 +33,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: nuget-test-${{ runner.os }}-${{ hashFiles('tests/**/*.csproj') }}
+          key: nuget-test-${{ runner.os }}-${{ hashFiles('tests/**/*.csproj', 'src/**/*.csproj') }}
           restore-keys: |
             nuget-test-${{ runner.os }}-
+
+      - name: Install MAUI workloads
+        run: dotnet workload install maui
 
       - name: Restore test project
         run: dotnet restore tests/Plugin.Maui.CustomTabbedPage.Tests

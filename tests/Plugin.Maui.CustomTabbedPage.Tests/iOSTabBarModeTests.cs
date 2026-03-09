@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Plugin.Maui.CustomTabbedPage;
+using Xunit;
 
 namespace Plugin.Maui.CustomTabbedPage.Tests;
 

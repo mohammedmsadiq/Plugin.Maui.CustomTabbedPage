@@ -1,12 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Tests run on plain .NET — no MAUI runtime required for unit tests -->
-    <TargetFramework>net8.0</TargetFramework>
+    <!--
+      Target net8.0-android so this project shares a compatible TFM with the plugin
+      (net8.0-ios;net8.0-android). Android is chosen because macOS CI agents support
+      it without additional provisioning beyond the MAUI workload.
+    -->
+    <TargetFramework>net8.0-android</TargetFramework>
+    <UseMaui>true</UseMaui>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <!-- Suppress AOT/linker warnings that are expected in test projects -->
+    <NoWarn>$(NoWarn);IL2026;IL2072;IL2091</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference the plugin under test -->
+    <ProjectReference Include="..\..\src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
