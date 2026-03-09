@@ -235,4 +235,6 @@ public partial class CustomTabbedPage : TabbedPage
     /// CustomTabbedPage.Android.cs.
     /// </summary>
     partial void RefreshNativeTabs();
+
+    #endregion
 }

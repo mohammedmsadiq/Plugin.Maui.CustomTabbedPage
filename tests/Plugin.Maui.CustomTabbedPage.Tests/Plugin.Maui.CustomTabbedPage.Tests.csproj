@@ -13,6 +13,12 @@
     <IsTestProject>true</IsTestProject>
     <!-- Suppress AOT/linker warnings that are expected in test projects -->
     <NoWarn>$(NoWarn);IL2026;IL2072;IL2091</NoWarn>
+    <!--
+      MAUI types are resolved transitively via the ProjectReference to the plugin.
+      This suppresses the "add Microsoft.Maui.Controls PackageReference" warning
+      that fires when UseMaui=true without an explicit package reference.
+    -->
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
   </PropertyGroup>
 
   <ItemGroup>
