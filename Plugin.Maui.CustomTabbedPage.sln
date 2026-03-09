@@ -1,0 +1,16 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# This solution contains a single MAUI plugin project and a sample app can be added separately.
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.CustomTabbedPage", "src/Plugin.Maui.CustomTabbedPage/Plugin.Maui.CustomTabbedPage.csproj", "{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7D7E5C-654A-4B65-AFC2-9CFB8D5CF48A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

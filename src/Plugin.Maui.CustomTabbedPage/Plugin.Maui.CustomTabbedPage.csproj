@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- MAUI plugins target multiple platforms. Use net8.0 and enable MAUI -->
+    <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+    <UseMaui>true</UseMaui>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Publish as a library -->
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+</Project>
