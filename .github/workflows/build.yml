@@ -30,6 +30,9 @@ jobs:
           # Use the latest available .NET SDK 8.x to build the library
           dotnet-version: '8.0.x'
 
+      - name: Install MAUI workloads
+        run: dotnet workload install maui
+
       - name: Restore packages
         run: dotnet restore
         working-directory: src/Plugin.Maui.CustomTabbedPage
