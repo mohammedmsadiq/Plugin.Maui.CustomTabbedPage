@@ -25,6 +25,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Install MAUI workloads
+        run: dotnet workload install maui
+
       - name: Restore packages
         run: dotnet restore
         working-directory: src/Plugin.Maui.CustomTabbedPage
@@ -50,6 +53,6 @@ jobs:
       # Optional step to publish the package to NuGet. To enable this,
       # add the `NUGET_API_KEY` secret to your repository's settings.
       - name: Publish to NuGet
-        if: secrets.NUGET_API_KEY != ''
+        if: ${{ secrets.NUGET_API_KEY != '' }}
         run: dotnet nuget push 'src/Plugin.Maui.CustomTabbedPage/artifacts/*.nupkg' --source 'https://api.nuget.org/v3/index.json' --api-key ${{ secrets.NUGET_API_KEY }}
         working-directory: .
