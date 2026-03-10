@@ -93,7 +93,10 @@ public static class CustomTabbedPageMapper
 
     // Parameters are Android.Graphics.Color (returned by ToPlatform()) — use global:: to
     // avoid ambiguity with Microsoft.Maui.Graphics.Color which is also in scope.
-    private static Android.Content.Res.ColorStateList CreateColorStateList(
+    // global:: is also required on Android.Content.Res because the current namespace
+    // (Plugin.Maui.CustomTabbedPage.Platforms.Android) makes the compiler look for
+    // Android as a child namespace first, causing CS0234 without the global:: prefix.
+    private static global::Android.Content.Res.ColorStateList CreateColorStateList(
         global::Android.Graphics.Color selectedColor,
         global::Android.Graphics.Color unselectedColor)
     {
@@ -107,6 +110,6 @@ public static class CustomTabbedPageMapper
             selectedColor.ToArgb(),
             unselectedColor.ToArgb()
         };
-        return new Android.Content.Res.ColorStateList(states, colors);
+        return new global::Android.Content.Res.ColorStateList(states, colors);
     }
 }
