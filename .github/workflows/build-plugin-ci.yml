@@ -1,4 +1,4 @@
-name: Build for CI
+name: CI / CD
 
 on:
   push:
@@ -9,15 +9,88 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-plugin-ci:
-    runs-on: windows-latest
 
+  # ── 1. Build & pack the NuGet ────────────────────────────────────────────────
+  # macOS is required because the plugin targets both net9.0-ios and net9.0-android;
+  # dotnet pack builds every target framework, so iOS tooling must be available.
+  pack:
+    name: Pack NuGet
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
+
+      - name: Install MAUI workloads
+        run: dotnet workload install maui-android maui-ios
+
+      - name: Pack
+        run: dotnet pack src/Plugin.Maui.CustomTabbedPage/Plugin.Maui.CustomTabbedPage.csproj -c Release --output nupkgs
+
+      - name: Upload NuGet artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg
+          path: nupkgs/*.nupkg
+
+  # ── 2. Run unit tests ─────────────────────────────────────────────────────────
+  # Tests target plain net9.0 with no MAUI dependency — ubuntu is sufficient.
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Test
+        run: dotnet test tests/Plugin.Maui.CustomTabbedPage.Tests/Plugin.Maui.CustomTabbedPage.Tests.csproj -c Release --logger "trx;LogFileName=results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: "**/*.trx"
+
+  # ── 3. Build the Android sample ───────────────────────────────────────────────
+  build-sample:
+    name: Build Sample (Android)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
       - name: Install MAUI Android workload
         run: dotnet workload install maui-android
-      - name: Build
-        run: dotnet build src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj -c Release -f net9.0-android -p:TargetFramework=net9.0-android -p:TargetFrameworks=net9.0-android
+
+      - name: Build Sample
+        run: dotnet build samples/Plugin.Maui.CustomTabbedPage.Sample/Plugin.Maui.CustomTabbedPage.Sample.csproj -c Release -f net9.0-android
+
+  # ── 4. Publish NuGet — main branch pushes only ───────────────────────────────
+  # Runs only after pack, test, and build-sample all succeed.
+  # Requires a NUGET_API_KEY secret configured in the repository settings.
+  release:
+    name: Publish NuGet
+    needs: [ pack, test, build-sample ]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: nupkg
+          path: nupkgs
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push nupkgs/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
