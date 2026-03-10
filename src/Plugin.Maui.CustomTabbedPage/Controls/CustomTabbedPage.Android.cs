@@ -1,6 +1,7 @@
 #if ANDROID
-using Microsoft.Maui.Controls.Handlers;
 using Android.Views;
+using Microsoft.Maui;
+using Microsoft.Maui.Handlers;
 #endif
 
 namespace Plugin.Maui.CustomTabbedPage.Controls;
@@ -14,21 +15,20 @@ public partial class CustomTabbedPage
 #if ANDROID
     partial void RefreshNativeTabs()
     {
-        if (Handler is not TabbedPageHandler handler)
+        if (Handler is not IPlatformViewHandler handler)
             return;
 
-        // Apply appearance customisations via the mapper.
-        Plugin.Maui.CustomTabbedPage.Platforms.Android.CustomTabbedPageMapper.Apply(handler, this);
+        if (handler.PlatformView is not global::Android.Views.View nativeView)
+            return;
 
-        // Request a layout update on the native view.
-        if (handler.PlatformView is View nativeView)
+        // Post so the BottomNavigationView is guaranteed to be in the view hierarchy
+        // before we attempt to style it.
+        nativeView.Post(() =>
         {
-            nativeView.Post(() =>
-            {
-                nativeView.RequestLayout();
-                nativeView.Invalidate();
-            });
-        }
+            Plugin.Maui.CustomTabbedPage.Platforms.Android.CustomTabbedPageMapper.Apply(handler, this);
+            nativeView.RequestLayout();
+            nativeView.Invalidate();
+        });
     }
 #endif
 }

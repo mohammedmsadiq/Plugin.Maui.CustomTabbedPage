@@ -4,20 +4,96 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
-    Title="Profile">
-    <VerticalStackLayout
-        Padding="24"
-        Spacing="16"
-        VerticalOptions="Center">
-        <Label
-            FontAttributes="Bold"
-            FontSize="28"
-            HorizontalOptions="Center"
-            Text="Profile" />
-        <Label
-            FontSize="16"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Text="This is the Profile tab. Tab text visibility is controlled via the ShowText property." />
-    </VerticalStackLayout>
+    Title="Profile"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header with avatar -->
+            <VerticalStackLayout
+                Padding="24,52,24,36"
+                BackgroundColor="{StaticResource Primary}"
+                HorizontalOptions="Fill"
+                Spacing="10">
+                <Frame
+                    BackgroundColor="{StaticResource PrimaryLight}"
+                    CornerRadius="40"
+                    HasShadow="False"
+                    HeightRequest="80"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    Padding="0"
+                    WidthRequest="80">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        HorizontalOptions="Center"
+                        Text="MS"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </Frame>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Mohammed Sadiq"
+                    TextColor="White" />
+                <Label
+                    FontSize="13"
+                    HorizontalOptions="Center"
+                    Text="@mohammedsadiq"
+                    TextColor="#C4B5F4" />
+            </VerticalStackLayout>
+
+            <!-- Settings rows -->
+            <VerticalStackLayout Padding="16,20,16,24" Spacing="10">
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" FontSize="15" Text="Edit Profile" VerticalOptions="Center" />
+                        <Label Grid.Column="1" FontSize="20" Text="›" TextColor="{StaticResource TextMutedColor}" VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" FontSize="15" Text="Notifications" VerticalOptions="Center" />
+                        <Label Grid.Column="1" FontSize="20" Text="›" TextColor="{StaticResource TextMutedColor}" VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" FontSize="15" Text="Privacy &amp; Security" VerticalOptions="Center" />
+                        <Label Grid.Column="1" FontSize="20" Text="›" TextColor="{StaticResource TextMutedColor}" VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" FontSize="15" Text="Help &amp; Support" VerticalOptions="Center" />
+                        <Label Grid.Column="1" FontSize="20" Text="›" TextColor="{StaticResource TextMutedColor}" VerticalOptions="Center" />
+                    </Grid>
+                </Frame>
+
+                <Frame
+                    BackgroundColor="#FFF1F0"
+                    BorderColor="Transparent"
+                    CornerRadius="14"
+                    HasShadow="False"
+                    Margin="0,8,0,0"
+                    Padding="16,14">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        HorizontalOptions="Center"
+                        Text="Sign Out"
+                        TextColor="{StaticResource ErrorColor}" />
+                </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </controls:CustomTabPage>

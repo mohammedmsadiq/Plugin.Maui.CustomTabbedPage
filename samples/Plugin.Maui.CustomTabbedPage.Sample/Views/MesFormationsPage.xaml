@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.MesFormationsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <BoxView HeightRequest="60" Color="Transparent" />
+            <VerticalStackLayout Padding="24,0,24,32" Spacing="4">
+                <Label Text="Mes formations"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#C9A843" />
+                <Label Text="Continuez votre apprentissage"
+                       FontSize="14"
+                       TextColor="#8B7A5A" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="20,0" Spacing="12">
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Leadership &amp; Management"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="72%"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Module 8 sur 12"
+                               FontSize="12"
+                               TextColor="#8B7A5A"
+                               Margin="0,4,0,8" />
+                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                 HeightRequest="4" CornerRadius="2"
+                                 BackgroundColor="#1E2E55" />
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Communication efficace"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="45%"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Module 4 sur 10"
+                               FontSize="12"
+                               TextColor="#8B7A5A"
+                               Margin="0,4,0,8" />
+                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                 HeightRequest="4" CornerRadius="2"
+                                 BackgroundColor="#1E2E55" />
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Prise de décision"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="100%"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                               Text="Complété ✓"
+                               FontSize="12"
+                               TextColor="#8B7A5A"
+                               Margin="0,4,0,8" />
+                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                 HeightRequest="4" CornerRadius="2"
+                                 BackgroundColor="#C9A843" />
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</controls:CustomTabPage>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.CoachIAPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <BoxView HeightRequest="60" Color="Transparent" />
+            <VerticalStackLayout Padding="24,0,24,32" Spacing="4">
+                <Label Text="Coach IA"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#C9A843" />
+                <Label Text="Votre assistant intelligent"
+                       FontSize="14"
+                       TextColor="#8B7A5A" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="20,0" Spacing="12">
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#C9A843" Padding="20,16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Conseil du jour"
+                               FontSize="12"
+                               TextColor="#C9A843"
+                               FontAttributes="Bold" />
+                        <Label Text="Concentrez-vous sur vos 3 priorités principales avant de répondre aux e-mails."
+                               FontSize="15"
+                               TextColor="#FFFFFF"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Sessions complétées"
+                               FontSize="13"
+                               TextColor="#8B7A5A" />
+                        <Label Text="24"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Prochaine session"
+                               FontSize="13"
+                               TextColor="#8B7A5A" />
+                        <Label Text="Demain, 09h00"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Planification hebdomadaire"
+                               FontSize="12"
+                               TextColor="#6B6B8A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</controls:CustomTabPage>

@@ -4,20 +4,164 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
-    Title="Home">
-    <VerticalStackLayout
-        Padding="24"
-        Spacing="16"
-        VerticalOptions="Center">
-        <Label
-            FontAttributes="Bold"
-            FontSize="28"
-            HorizontalOptions="Center"
-            Text="Home" />
-        <Label
-            FontSize="16"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Text="This is the Home tab. Use the tabs below to navigate between pages." />
-    </VerticalStackLayout>
+    Title="Home"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header -->
+            <VerticalStackLayout
+                Padding="24,52,24,32"
+                BackgroundColor="{StaticResource Primary}"
+                Spacing="4">
+                <Label
+                    FontSize="14"
+                    Text="Good morning"
+                    TextColor="#C4B5F4" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="26"
+                    Text="Welcome Back"
+                    TextColor="White" />
+            </VerticalStackLayout>
+
+            <!-- Stats cards (overlap header) -->
+            <Grid
+                Margin="16,-20,16,0"
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="10">
+                <Frame
+                    Grid.Column="0"
+                    Style="{StaticResource CardFrame}"
+                    Padding="12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Text="12"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Tasks"
+                            TextColor="{StaticResource TextMutedColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                    Style="{StaticResource CardFrame}"
+                    Padding="12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Text="4"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Projects"
+                            TextColor="{StaticResource TextMutedColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame
+                    Grid.Column="2"
+                    Style="{StaticResource CardFrame}"
+                    Padding="12">
+                    <VerticalStackLayout Spacing="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="22"
+                            HorizontalOptions="Center"
+                            Text="5"
+                            TextColor="{StaticResource Primary}" />
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Messages"
+                            TextColor="{StaticResource TextMutedColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <!-- Section header -->
+            <Label
+                Margin="24,28,24,12"
+                Style="{StaticResource SectionHeader}"
+                Text="Recent Activity" />
+
+            <!-- Activity items -->
+            <VerticalStackLayout Padding="16,0,16,24" Spacing="10">
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="40,*" ColumnSpacing="12">
+                        <BoxView
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryMuted}"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label FontAttributes="Bold" FontSize="14" Text="Design review complete" />
+                            <Label Style="{StaticResource MutedLabel}" Text="2 hours ago" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="40,*" ColumnSpacing="12">
+                        <BoxView
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryMuted}"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label FontAttributes="Bold" FontSize="14" Text="New comment on PR #42" />
+                            <Label Style="{StaticResource MutedLabel}" Text="5 hours ago" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="40,*" ColumnSpacing="12">
+                        <BoxView
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryMuted}"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label FontAttributes="Bold" FontSize="14" Text="Sprint planning tomorrow" />
+                            <Label Style="{StaticResource MutedLabel}" Text="Yesterday" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame Style="{StaticResource CardFrame}">
+                    <Grid ColumnDefinitions="40,*" ColumnSpacing="12">
+                        <BoxView
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryMuted}"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            VerticalOptions="Center"
+                            WidthRequest="40" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label FontAttributes="Bold" FontSize="14" Text="Plugin v2.0 released" />
+                            <Label Style="{StaticResource MutedLabel}" Text="2 days ago" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
 </controls:CustomTabPage>

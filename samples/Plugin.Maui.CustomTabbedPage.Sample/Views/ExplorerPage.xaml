@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.ExplorerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <BoxView HeightRequest="60" Color="Transparent" />
+            <VerticalStackLayout Padding="24,0,24,32" Spacing="4">
+                <Label Text="Explorer"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#C9A843" />
+                <Label Text="Découvrez de nouvelles ressources"
+                       FontSize="14"
+                       TextColor="#8B7A5A" />
+            </VerticalStackLayout>
+
+            <!-- Search bar -->
+            <Frame Margin="20,0,20,16" BackgroundColor="#152040" CornerRadius="12"
+                   HasShadow="False" BorderColor="#1E2E55" Padding="16,12">
+                <Label Text="Rechercher des ressources..."
+                       FontSize="14"
+                       TextColor="#6B6B8A" />
+            </Frame>
+
+            <!-- Categories -->
+            <Grid Margin="20,0" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#1A2545" CornerRadius="14"
+                       HasShadow="False" BorderColor="#1E2E55" Padding="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Leadership" FontSize="13" FontAttributes="Bold" TextColor="#C9A843" />
+                        <Label Text="48 ressources" FontSize="11" TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#152040" CornerRadius="14"
+                       HasShadow="False" BorderColor="#1E2E55" Padding="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Stratégie" FontSize="13" FontAttributes="Bold" TextColor="#C9A843" />
+                        <Label Text="32 ressources" FontSize="11" TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#152040" CornerRadius="14"
+                       HasShadow="False" BorderColor="#1E2E55" Padding="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Innovation" FontSize="13" FontAttributes="Bold" TextColor="#C9A843" />
+                        <Label Text="19 ressources" FontSize="11" TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#152040" CornerRadius="14"
+                       HasShadow="False" BorderColor="#1E2E55" Padding="16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Bien-être" FontSize="13" FontAttributes="Bold" TextColor="#C9A843" />
+                        <Label Text="27 ressources" FontSize="11" TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</controls:CustomTabPage>

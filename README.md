@@ -215,7 +215,7 @@ Use `iOSMode="NativeGlass"` to adopt the system's translucent Liquid Glass look.
 ## Building from Source
 
 1. Clone the repository.
-2. Install the .NET 8 SDK and MAUI workload:
+2. Install the .NET 9 SDK and MAUI workload:
    ```bash
    dotnet workload install maui
    ```

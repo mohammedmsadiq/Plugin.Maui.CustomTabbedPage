@@ -43,7 +43,7 @@ body:
     attributes:
       label: .NET / MAUI version
       description: Output of `dotnet --version` and your MAUI workload version.
-      placeholder: "e.g. .NET 8.0.200, MAUI 8.0.20"
+      placeholder: "e.g. .NET 9.0.306, MAUI 9.0.14"
     validations:
       required: true
 

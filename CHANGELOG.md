@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unit tests for bindable property defaults.
 - `Directory.Build.props` for centralised version and build configuration.
 - `.editorconfig` for consistent code style across all editors.
-- `global.json` to pin the .NET 8 SDK.
+- `global.json` to pin the .NET 9 SDK.
 - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, and GitHub issue/PR templates.
 - Improved CI/CD workflows with test execution and code quality gates.
 

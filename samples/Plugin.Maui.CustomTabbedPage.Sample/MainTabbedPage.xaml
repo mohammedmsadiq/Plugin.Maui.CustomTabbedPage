@@ -5,34 +5,60 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
     xmlns:views="clr-namespace:Plugin.Maui.CustomTabbedPage.Sample.Views"
-    TabBarBackgroundColor="#FFFFFF"
-    TabBarSelectedColor="#512BD4"
-    TabBarUnselectedColor="#9E9E9E"
+    TabBarBackgroundColor="#0D1B3E"
+    TabBarSelectedColor="#C9A843"
+    TabBarUnselectedColor="#7A6929"
     TabBarBackgroundOpacity="1.0"
+    TabFontSize="10"
     RemoveTopShadowLine="True"
+    ShowSelectedTabUnderline="True"
+    TabBarIndicatorColor="#C9A843"
     iOSMode="Branded">
 
-    <!--
-        Each child must derive from CustomTabPage. Use SelectedIcon / UnselectedIcon
-        to supply distinct images for selected and unselected states. Use BadgeText
-        and BadgeIsVisible to control notification badges.
-    -->
-    <views:HomePage
-        Title="Home"
+    <views:EngagerPage
+        Title="Engager"
         ShowText="True"
-        BadgeIsVisible="False" />
-
-    <views:ExploreePage
-        Title="Explore"
-        ShowText="True"
+        SelectedIcon="tab_engager.png"
+        UnselectedIcon="tab_engager.png"
         BadgeIsVisible="True"
-        BadgeText="5"
-        TabBadgeColor="#512BD4"
+        BadgeText="2"
+        TabBadgeColor="#E05454"
         TabBadgeTextColor="White" />
 
-    <views:ProfilePage
-        Title="Profile"
+    <views:CoachIAPage
+        Title="Coach IA"
         ShowText="True"
+        SelectedIcon="tab_coach.png"
+        UnselectedIcon="tab_coach.png"
+        BadgeIsVisible="True"
+        BadgeText="5"
+        TabBadgeColor="#C9A843"
+        TabBadgeTextColor="#0D1B3E" />
+
+    <views:MesFormationsPage
+        Title="Mes formations"
+        ShowText="True"
+        SelectedIcon="tab_formations.png"
+        UnselectedIcon="tab_formations.png"
         BadgeIsVisible="False" />
+
+    <views:MesActivitesPage
+        Title="Mes activités"
+        ShowText="True"
+        SelectedIcon="tab_activites.png"
+        UnselectedIcon="tab_activites.png"
+        BadgeIsVisible="True"
+        BadgeText="1"
+        TabBadgeColor="#3EB489"
+        TabBadgeTextColor="White" />
+
+    <views:ExplorerPage
+        Title="Explorer"
+        ShowText="True"
+        SelectedIcon="tab_explorer_compass.png"
+        UnselectedIcon="tab_explorer_compass.png"
+        BadgeIsVisible="True"
+        TabBadgeColor="#E05454"
+        TabBadgeTextColor="White" />
 
 </controls:CustomTabbedPage>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.MesActivitesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <BoxView HeightRequest="60" Color="Transparent" />
+            <VerticalStackLayout Padding="24,0,24,32" Spacing="4">
+                <Label Text="Mes activités"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#C9A843" />
+                <Label Text="Suivez votre progression"
+                       FontSize="14"
+                       TextColor="#8B7A5A" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Padding="20,0" Spacing="12">
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Activité récente"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Text="Réunion d'équipe hebdomadaire"
+                               FontSize="15"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Aujourd'hui • 1h 30min"
+                               FontSize="12"
+                               TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Atelier de présentation"
+                               FontSize="15"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Hier • 2h 00min"
+                               FontSize="12"
+                               TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Session de coaching individuel"
+                               FontSize="15"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Lundi • 45min"
+                               FontSize="12"
+                               TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Revue de sprint"
+                               FontSize="15"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Vendredi dernier • 1h 00min"
+                               FontSize="12"
+                               TextColor="#8B7A5A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</controls:CustomTabPage>

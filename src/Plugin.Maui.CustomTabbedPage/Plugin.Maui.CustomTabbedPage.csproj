@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk" TreatAsLocalProperty="RuntimeIdentifier;RuntimeIdentifiers">
   <PropertyGroup>
-    <!-- MAUI plugins target multiple platforms. Use net8.0 and enable MAUI -->
-    <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+    <!-- MAUI plugins target multiple platforms. Use net9.0 and enable MAUI -->
+    <TargetFrameworks>net9.0-ios;net9.0-android</TargetFrameworks>
     <UseMaui>true</UseMaui>
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <!-- Publish as a library -->
@@ -37,10 +38,11 @@
     <MinClientVersion>5.0</MinClientVersion>
   </PropertyGroup>
 
-  <!-- Microsoft.Maui.Controls is provided implicitly by UseMaui=true via the installed
-       workload. An explicit PackageReference here conflicts with the workload's own package
-       management and prevents the MAUI SDK from fully loading (which in turn breaks platform
-       file exclusions for Platforms/iOS/ and Platforms/Android/). Let the workload manage it. -->
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <!-- Clear any iOS simulator RID carried over by the IDE before Android ABI resolution. -->
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == 'iossimulator-arm64' or '$(RuntimeIdentifier)' == 'iossimulator-x64'"></RuntimeIdentifier>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == 'iossimulator-arm64' or '$(RuntimeIdentifiers)' == 'iossimulator-x64'"></RuntimeIdentifiers>
+  </PropertyGroup>
 
   <!-- Include the README and icon in the NuGet package -->
   <ItemGroup>

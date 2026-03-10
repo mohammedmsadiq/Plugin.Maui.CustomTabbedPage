@@ -4,24 +4,122 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
-    Title="Explore">
-    <VerticalStackLayout
-        Padding="24"
-        Spacing="16"
-        VerticalOptions="Center">
-        <Label
-            FontAttributes="Bold"
-            FontSize="28"
-            HorizontalOptions="Center"
-            Text="Explore" />
-        <Label
-            FontSize="16"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Text="This tab has a badge with custom colours set via TabBadgeColor and TabBadgeTextColor." />
-        <Button
-            Clicked="OnClearBadgeClicked"
-            HorizontalOptions="Center"
-            Text="Clear Badge" />
-    </VerticalStackLayout>
+    Title="Explore"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header -->
+            <VerticalStackLayout
+                Padding="24,52,24,24"
+                BackgroundColor="{StaticResource Primary}"
+                Spacing="16">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="26"
+                    Text="Explore"
+                    TextColor="White" />
+                <!-- Search bar mock -->
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="12"
+                    HasShadow="False"
+                    Padding="14,11">
+                    <Label
+                        FontSize="15"
+                        Text="Search categories..."
+                        TextColor="{StaticResource TextMutedColor}" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <!-- Category grid -->
+            <Label
+                Margin="24,24,24,12"
+                Style="{StaticResource SectionHeader}"
+                Text="Categories" />
+
+            <Grid
+                Margin="16,0"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="12"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="12">
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="#EDE9FE"
+                    BorderColor="Transparent"
+                    CornerRadius="16"
+                    HasShadow="False"
+                    Padding="20,28">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        Text="Design"
+                        TextColor="{StaticResource Primary}" />
+                </Frame>
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="#F0FDF4"
+                    BorderColor="Transparent"
+                    CornerRadius="16"
+                    HasShadow="False"
+                    Padding="20,28">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        Text="Development"
+                        TextColor="#16A34A" />
+                </Frame>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="#FFF7ED"
+                    BorderColor="Transparent"
+                    CornerRadius="16"
+                    HasShadow="False"
+                    Padding="20,28">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        Text="Marketing"
+                        TextColor="#EA580C" />
+                </Frame>
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="#EFF6FF"
+                    BorderColor="Transparent"
+                    CornerRadius="16"
+                    HasShadow="False"
+                    Padding="20,28">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        Text="Analytics"
+                        TextColor="#2563EB" />
+                </Frame>
+            </Grid>
+
+            <!-- Badge demo -->
+            <VerticalStackLayout Padding="24,28,24,24" Spacing="10">
+                <Label Style="{StaticResource SectionHeader}" Text="Badge Demo" />
+                <Label
+                    Style="{StaticResource MutedLabel}"
+                    Text="This tab shows a badge using TabBadgeColor and TabBadgeTextColor. Tap below to clear it."
+                    FontSize="14" />
+                <Button
+                    Clicked="OnClearBadgeClicked"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="12"
+                    Padding="0,14"
+                    Text="Clear Badge"
+                    TextColor="White" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </controls:CustomTabPage>

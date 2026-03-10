@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!--
-      Plain net8.0 target — no MAUI workload needed.
+      Plain net9.0 target — no MAUI workload needed.
       The enum source file is linked directly below so we can test pure C#
       without pulling in any platform-specific MAUI dependencies.
     -->
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>

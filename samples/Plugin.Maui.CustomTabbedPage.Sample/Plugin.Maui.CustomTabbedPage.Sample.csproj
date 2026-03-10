@@ -1,11 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk" TreatAsLocalProperty="RuntimeIdentifier;RuntimeIdentifiers">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-ios;net8.0-android</TargetFrameworks>
+    <TargetFrameworks>net9.0-ios;net9.0-android</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Plugin.Maui.CustomTabbedPage.Sample</RootNamespace>
+    <ApplicationTitle>Plugin.Maui.CustomTabbedPage.Sample</ApplicationTitle>
     <ApplicationId>com.pluginmaui.customtabbedpage.sample</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -15,8 +18,37 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <!-- Visual Studio can sometimes carry the last selected iOS simulator RID into
+         Android builds. Clear any leaked iOS RID so the Android SDK can resolve the
+         ABI from the selected emulator/device. -->
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == 'iossimulator-arm64' or '$(RuntimeIdentifier)' == 'iossimulator-x64'"></RuntimeIdentifier>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == 'iossimulator-arm64' or '$(RuntimeIdentifiers)' == 'iossimulator-x64'"></RuntimeIdentifiers>
+    <!-- Avoid Fast Deployment on the sample app; the emulator was launching a package
+         without the override assemblies and the runtime aborted on startup. -->
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidFastDeploymentType></AndroidFastDeploymentType>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiImage Include="Resources/Images/tab_home.svg" />
+    <MauiImage Include="Resources/Images/tab_explore.svg" />
+    <MauiImage Include="Resources/Images/tab_profile.svg" />
+    <MauiImage Include="Resources/Images/tab_home_filled.svg" />
+    <MauiImage Include="Resources/Images/tab_home_outline.svg" />
+    <MauiImage Include="Resources/Images/tab_explore_filled.svg" />
+    <MauiImage Include="Resources/Images/tab_explore_outline.svg" />
+    <MauiImage Include="Resources/Images/tab_profile_filled.svg" />
+    <MauiImage Include="Resources/Images/tab_profile_outline.svg" />
+    <MauiImage Include="Resources/Images/tab_engager.svg" />
+    <MauiImage Include="Resources/Images/tab_coach.svg" />
+    <MauiImage Include="Resources/Images/tab_formations.svg" />
+    <MauiImage Include="Resources/Images/tab_activites.svg" />
+    <MauiImage Include="Resources/Images/tab_explorer_compass.svg" />
   </ItemGroup>
 
   <!-- App icon and splash screen resources -->

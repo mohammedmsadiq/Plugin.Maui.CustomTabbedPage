@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="PrimaryLight">#7C56E8</Color>
+    <Color x:Key="PrimaryMuted">#EDE9FE</Color>
+    <Color x:Key="PageBackgroundColor">#F5F4FB</Color>
+    <Color x:Key="SurfaceColor">#FFFFFF</Color>
+    <Color x:Key="TextPrimaryColor">#111827</Color>
+    <Color x:Key="TextMutedColor">#9E9E9E</Color>
+    <Color x:Key="BorderColor">#F0F0F0</Color>
+    <Color x:Key="ErrorColor">#E53935</Color>
+
+    <!-- Dark navy + gold tab bar theme -->
+    <Color x:Key="TabNavyBackground">#0D1B3E</Color>
+    <Color x:Key="TabGoldAccent">#C9A843</Color>
+    <Color x:Key="TabGoldMuted">#7A6929</Color>
+</ResourceDictionary>

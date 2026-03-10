@@ -1,5 +1,6 @@
 #if IOS
-using Microsoft.Maui.Controls.Handlers;
+using Microsoft.Maui;
+using Microsoft.Maui.Handlers;
 using UIKit;
 #endif
 
@@ -15,17 +16,23 @@ public partial class CustomTabbedPage
     partial void RefreshNativeTabs()
     {
         // Ensure the handler and view controller are available.
-        if (Handler is not TabbedPageHandler handler)
+        if (Handler is not IPlatformViewHandler handler)
             return;
+
+        if (handler.ViewController?.View is UIView view)
+        {
+            view.SetNeedsLayout();
+            view.LayoutIfNeeded();
+        }
 
         // Let the mapper adjust the appearance of the tab bar.
         Plugin.Maui.CustomTabbedPage.Platforms.iOS.CustomTabbedPageMapper.Apply(handler, this);
 
         // Force layout to update changes.
-        if (handler.ViewController?.View is UIView view)
+        if (handler.ViewController?.View is UIView updatedView)
         {
-            view.SetNeedsLayout();
-            view.LayoutIfNeeded();
+            updatedView.SetNeedsLayout();
+            updatedView.LayoutIfNeeded();
         }
     }
 #endif

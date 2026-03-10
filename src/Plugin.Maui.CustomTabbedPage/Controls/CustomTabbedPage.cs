@@ -65,6 +65,16 @@ public partial class CustomTabbedPage : TabbedPage
             nameof(TabFontSize), typeof(double), typeof(CustomTabbedPage), 11d,
             propertyChanged: OnTabbedPagePropertyChanged);
 
+    public static readonly BindableProperty ShowSelectedTabUnderlineProperty =
+        BindableProperty.Create(
+            nameof(ShowSelectedTabUnderline), typeof(bool), typeof(CustomTabbedPage), false,
+            propertyChanged: OnTabbedPagePropertyChanged);
+
+    public static readonly BindableProperty TabBarIndicatorColorProperty =
+        BindableProperty.Create(
+            nameof(TabBarIndicatorColor), typeof(Color), typeof(CustomTabbedPage), Colors.Transparent,
+            propertyChanged: OnTabbedPagePropertyChanged);
+
     /// <summary>
     /// Gets or sets the visual mode for the iOS tab bar. The default is <see cref="iOSTabBarMode.Branded"/>.
     /// </summary>
@@ -157,12 +167,41 @@ public partial class CustomTabbedPage : TabbedPage
     }
 
     /// <summary>
+    /// Gets or sets a value indicating whether a thin underline should be drawn beneath
+    /// the selected tab item on iOS.
+    /// </summary>
+    public bool ShowSelectedTabUnderline
+    {
+        get => (bool)GetValue(ShowSelectedTabUnderlineProperty);
+        set => SetValue(ShowSelectedTabUnderlineProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the colour of the selected tab underline indicator.
+    /// Defaults to <see cref="TabBarSelectedColor"/> when Transparent.
+    /// </summary>
+    public Color TabBarIndicatorColor
+    {
+        get => (Color)GetValue(TabBarIndicatorColorProperty);
+        set => SetValue(TabBarIndicatorColorProperty, value);
+    }
+
+    /// <summary>
     /// Constructs a new instance of <see cref="CustomTabbedPage"/> and wires up
     /// refresh logic for when the current tab changes or when the page is loaded.
+    /// On Android the tab bar is forced to the bottom so that a
+    /// <c>BottomNavigationView</c> is created and the appearance customisations
+    /// applied by <see cref="Platforms.Android.CustomTabbedPageMapper"/> take effect.
     /// </summary>
     public CustomTabbedPage()
     {
+#if ANDROID
+        Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific.TabbedPage.SetToolbarPlacement(
+            this,
+            Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific.ToolbarPlacement.Bottom);
+#endif
         CurrentPageChanged += (_, _) => RefreshTabs();
+        HandlerChanged += (_, _) => RefreshTabs();
         Loaded += (_, _) => RefreshTabs();
     }
 

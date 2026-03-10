@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:CustomTabPage
+    x:Class="Plugin.Maui.CustomTabbedPage.Sample.Views.EngagerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Plugin.Maui.CustomTabbedPage.Controls;assembly=Plugin.Maui.CustomTabbedPage"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header -->
+            <BoxView HeightRequest="60" Color="Transparent" />
+            <VerticalStackLayout Padding="24,0,24,32" Spacing="4">
+                <Label Text="Engager"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="#C9A843" />
+                <Label Text="Gérez vos engagements"
+                       FontSize="14"
+                       TextColor="#8B7A5A" />
+            </VerticalStackLayout>
+
+            <!-- Cards -->
+            <VerticalStackLayout Padding="20,0" Spacing="12">
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Engagements actifs"
+                               FontSize="13"
+                               TextColor="#8B7A5A" />
+                        <Label Text="12"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Text="En cours cette semaine"
+                               FontSize="12"
+                               TextColor="#6B6B8A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Prochain rendez-vous"
+                               FontSize="13"
+                               TextColor="#8B7A5A" />
+                        <Label Text="Aujourd'hui, 14h00"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF" />
+                        <Label Text="Réunion avec l'équipe Design"
+                               FontSize="12"
+                               TextColor="#6B6B8A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#152040" CornerRadius="14" HasShadow="False"
+                       BorderColor="#1E2E55" Padding="20,16">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Taux de complétion"
+                               FontSize="13"
+                               TextColor="#8B7A5A" />
+                        <Label Text="78%"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="#C9A843" />
+                        <Label Text="Par rapport à la semaine dernière +12%"
+                               FontSize="12"
+                               TextColor="#6B6B8A" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</controls:CustomTabPage>

@@ -5,7 +5,7 @@ Thank you for your interest in contributing! Contributions of any kind — bug r
 ## Getting Started
 
 1. Fork the repository and clone your fork locally.
-2. Make sure you have the [.NET 8 SDK](https://dotnet.microsoft.com/download) and the MAUI workload installed:
+2. Make sure you have the [.NET 9 SDK](https://dotnet.microsoft.com/download) and the MAUI workload installed:
    ```bash
    dotnet workload install maui
    ```
@@ -32,7 +32,7 @@ Plugin.Maui.CustomTabbedPage/
 
 ## Running Tests
 
-Unit tests target `net8.0` and do not require any MAUI runtime or device:
+Unit tests target `net9.0` and do not require any MAUI runtime or device:
 
 ```bash
 dotnet test tests/Plugin.Maui.CustomTabbedPage.Tests
