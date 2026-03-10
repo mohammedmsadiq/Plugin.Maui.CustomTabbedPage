@@ -37,15 +37,10 @@
     <MinClientVersion>5.0</MinClientVersion>
   </PropertyGroup>
 
-  <!-- Explicit pinned version (same pattern as the reference repo).
-       $(MauiVersion) is not available at NuGet restore time — it is injected by the MAUI
-       workload SDK only after restore completes — so using it here results in an empty
-       version string, which prevents restore from succeeding and causes the MAUI SDK
-       (including platform-file exclusions) to never load. Pin to a concrete version instead.
-       Update this when upgrading the MAUI workload. -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
-  </ItemGroup>
+  <!-- Microsoft.Maui.Controls is provided implicitly by UseMaui=true via the installed
+       workload. An explicit PackageReference here conflicts with the workload's own package
+       management and prevents the MAUI SDK from fully loading (which in turn breaks platform
+       file exclusions for Platforms/iOS/ and Platforms/Android/). Let the workload manage it. -->
 
   <!-- Include the README and icon in the NuGet package -->
   <ItemGroup>

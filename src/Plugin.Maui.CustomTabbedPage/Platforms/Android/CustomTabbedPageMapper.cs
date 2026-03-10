@@ -1,3 +1,4 @@
+#if ANDROID
 using Android.Graphics;
 using Android.Views;
 using Google.Android.Material.Badge;
@@ -113,3 +114,4 @@ public static class CustomTabbedPageMapper
         return new global::Android.Content.Res.ColorStateList(states, colors);
     }
 }
+#endif

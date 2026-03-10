@@ -1,3 +1,4 @@
+#if IOS
 using Microsoft.Maui.Controls.Handlers;
 using Microsoft.Maui.Platform;
 using UIKit;
@@ -70,3 +71,4 @@ public static class CustomTabbedPageMapper
         }
     }
 }
+#endif
