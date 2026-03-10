@@ -1,4 +1,4 @@
-name: Build for CI
+name: Build Sample App for CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-plugin-ci:
+  build-sample-ci:
     runs-on: windows-latest
 
     steps:
@@ -19,5 +19,5 @@ jobs:
           dotnet-version: 9.0.x
       - name: Install MAUI Android workload
         run: dotnet workload install maui-android
-      - name: Build
-        run: dotnet build src\Plugin.Maui.CustomTabbedPage\Plugin.Maui.CustomTabbedPage.csproj -c Release -f net9.0-android -p:TargetFramework=net9.0-android -p:TargetFrameworks=net9.0-android
+      - name: Build Sample
+        run: dotnet build samples\Plugin.Maui.CustomTabbedPage.Sample\Plugin.Maui.CustomTabbedPage.Sample.csproj -c Release -f net9.0-android -p:TargetFramework=net9.0-android -p:TargetFrameworks=net9.0-android

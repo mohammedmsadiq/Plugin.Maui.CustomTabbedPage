@@ -191,7 +191,7 @@ public partial class CustomTabbedPage : TabbedPage
     /// refresh logic for when the current tab changes or when the page is loaded.
     /// On Android the tab bar is forced to the bottom so that a
     /// <c>BottomNavigationView</c> is created and the appearance customisations
-    /// applied by <see cref="Platforms.Android.CustomTabbedPageMapper"/> take effect.
+    /// applied by <c>CustomTabbedPageMapper</c> take effect.
     /// </summary>
     public CustomTabbedPage()
     {
