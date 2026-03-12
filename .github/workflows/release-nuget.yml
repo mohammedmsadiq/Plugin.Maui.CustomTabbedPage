@@ -1,10 +1,6 @@
 name: Create a (Pre)release on NuGet
 
 on:
-  # Triggered when a release is published via the GitHub UI.
-  release:
-    types: [published]
-  # Also triggered when a tag is pushed directly via git (e.g. git push origin v1.0.0).
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
