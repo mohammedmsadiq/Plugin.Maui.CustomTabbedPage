@@ -2,7 +2,7 @@
 
 A lightweight yet flexible tab control for .NET MAUI that lets you host real `ContentPage` children while fully customising the native tab bar on iOS and Android. Control per-tab icons, badges, and text visibility, as well as global bar colours, opacity, and iOS appearance mode — all from XAML or C#.
 
-[![Build](https://github.com/YOUR_ORG/Plugin.Maui.CustomTabbedPage/actions/workflows/build.yml/badge.svg)](https://github.com/YOUR_ORG/Plugin.Maui.CustomTabbedPage/actions/workflows/build.yml)
+[![Build](https://github.com/mohammedmsadiq/Plugin.Maui.CustomTabbedPage/actions/workflows/build-plugin-ci.yml/badge.svg)](https://github.com/mohammedmsadiq/Plugin.Maui.CustomTabbedPage/actions/workflows/build-plugin-ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/Plugin.Maui.CustomTabbedPage.svg)](https://www.nuget.org/packages/Plugin.Maui.CustomTabbedPage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -84,6 +84,8 @@ Use `CustomTabbedPage` as your root page and add `CustomTabPage` children:
     TabBarBackgroundColor="#FFFFFF"
     TabBarBackgroundOpacity="1.0"
     RemoveTopShadowLine="True"
+    ShowSelectedTabUnderline="True"
+    TabBarIndicatorColor="#512BD4"
     iOSMode="Branded">
 
     <views:HomePage
@@ -137,6 +139,8 @@ The top-level container. Inherits from `TabbedPage`.
 | `RemoveTopShadowLine` | `bool` | `true` | Removes the separator line above the tab bar when `true`. |
 | `TabFontFamily` | `string?` | `null` | Global font family for tab titles (overridden per-tab). |
 | `TabFontSize` | `double` | `11` | Global font size for tab titles (overridden per-tab). |
+| `ShowSelectedTabUnderline` | `bool` | `false` | Draws a thin underline beneath the selected tab item. |
+| `TabBarIndicatorColor` | `Color` | `Transparent` | Colour of the selected-tab underline. Falls back to `TabBarSelectedColor` when `Transparent`. |
 
 #### Methods
 
@@ -200,6 +204,18 @@ myAlertsTab.BadgeIsVisible = unreadCount > 0;
 
 ```xml
 <views:HomePage Title="Home" ShowText="False" />
+```
+
+### Selected tab underline indicator
+
+Show a coloured line beneath the active tab. If `TabBarIndicatorColor` is `Transparent` (the default) the line takes the value of `TabBarSelectedColor`:
+
+```xml
+<controls:CustomTabbedPage
+    ShowSelectedTabUnderline="True"
+    TabBarIndicatorColor="#C9A843"
+    TabBarSelectedColor="#C9A843"
+    ...>
 ```
 
 ### NativeGlass mode (iOS 18+)
