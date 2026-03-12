@@ -20,8 +20,8 @@
     <RepositoryUrl>https://github.com/YOUR_ORG/Plugin.Maui.CustomTabbedPage</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile Condition="Exists('..\..\README.md')">README.md</PackageReadmeFile>
+    <PackageIcon Condition="Exists('..\..\icon.png')">icon.png</PackageIcon>
     <Copyright>Copyright © 2024 Plugin.Maui.CustomTabbedPage Contributors</Copyright>
 
     <!-- Source Link / debugging support -->
