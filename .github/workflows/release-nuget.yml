@@ -1,6 +1,12 @@
 name: Create a (Pre)release on NuGet
 
 on:
+  # Fires when a release is published via the GitHub UI (Releases → Publish release).
+  # Note: GitHub does NOT emit a push event when it creates a tag during release
+  # publishing, so push: tags alone is not enough for the UI workflow.
+  release:
+    types: [published]
+  # Also fires when a tag is pushed directly from the terminal (git push origin v1.0.0).
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
